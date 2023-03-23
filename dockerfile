@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 # install mysql-server
 RUN apt-get update && \
-    apt-get install -y tzdata && \
+    apt-get install -y tzdata systemctl && \
     apt-get install -y mysql-server && \
     echo "Asia/Shanghai" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata
@@ -32,7 +32,7 @@ RUN apt-get install -y software-properties-common && \
     apt-get install -y python3.8
 
 # install ohter requirements
-RUN apt-get install -y openjdk-17-jdk git pip curl systemctl
+RUN apt-get install -y openjdk-17-jdk git pip curl
 
 
 # pull backend and install python requirement
