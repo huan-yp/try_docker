@@ -12,7 +12,8 @@ RUN apt-get update && \
 RUN apt-get install -y mysql-client && \
     systemctl enable mysql && \
     service mysql start && \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '123456' WITH GRANT OPTION;" && \
+    mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY '123456';" && \
+    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';" && \
     service mysql restart && \
     mysql -u root -p123456 -e "CREATE DATABASE IF NOT EXISTS aimemory; USE aimemory; CREATE TABLE IF NOT EXISTS main(`id` int not null auto_increment,`sender` varchar(64) not null,`group` varchar(64) not null,`content` varchar(4096) not null,`date` datetime(3),`reply` int unsigned default 0,primary key(`id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;"
 
