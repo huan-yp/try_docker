@@ -2,6 +2,7 @@ FROM ubuntu:22.04
 
 # install mysql-server
 RUN apt-get update && \
+    apt-get install -y tzdata && \
     apt-get install -y mysql-server && \
     echo "Asia/Shanghai" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata
