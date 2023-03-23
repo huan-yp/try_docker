@@ -1,7 +1,8 @@
 FROM ubuntu:22.04
 
 # install mysql-server
-RUN apt-get install -y mysql-server && \
+RUN apt-get update && \
+    apt-get install -y mysql-server && \
     echo "Asia/Shanghai" > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata
 
@@ -16,8 +17,7 @@ RUN apt-get install -y mysql-client && \
 
 
 # install miniconda3
-RUN apt-get update && \
-    apt-get install -y wget && \
+RUN apt-get install -y wget && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
     rm Miniconda3-latest-Linux-x86_64.sh
