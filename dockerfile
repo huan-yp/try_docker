@@ -21,6 +21,8 @@ RUN apt-get install -y openjdk-17-jdk git pip curl systemctl
 # install mysql8 and config a root with password 123456
 # then create a database and create the table
 RUN apt-get install -y mysql-server mysql-client && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata &&\
     systemctl enable mysql && \
     service mysql start && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '123456' WITH GRANT OPTION;" && \
