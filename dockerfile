@@ -12,7 +12,7 @@ RUN apt-get update && \
 RUN systemctl enable mysql && \
     service mysql start && \
     mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY '123456';" && \
-    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';" && \
+    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';"
 
 # create a database and create the table
 RUN service mysql restart && \
