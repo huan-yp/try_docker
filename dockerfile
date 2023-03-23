@@ -11,7 +11,7 @@ RUN apt-get update && \
 # config a root with password 123456
 RUN systemctl enable mysql && \
     service mysql start && \
-    mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456'; FLUSH PRIVILEGES;"
+    mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY '123456'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
 # create a database and create the table
 RUN service mysql restart && \
