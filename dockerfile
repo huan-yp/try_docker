@@ -10,7 +10,7 @@ RUN apt-get update && \
 ENV PATH="/opt/conda/bin:${PATH}"
 
 # install ohter requirements
-RUN apt-get install -y openjdk-17-jdk python3.8 git pip curl systemctl
+RUN apt-get install -y openjdk-17-jdk python git pip curl systemctl
 
 # install mysql8 and config a root with password 123456
 # then create a database and create the table
