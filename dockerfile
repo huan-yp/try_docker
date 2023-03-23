@@ -1,16 +1,15 @@
 FROM ubuntu:22.04
 
-# install mysql-server
+# install mysql-server, mysql-client
 RUN apt-get update && \
     apt-get install -y tzdata systemctl && \
     apt-get install -y mysql-server && \
     echo "Asia/Shanghai" > /etc/timezone && \
-    dpkg-reconfigure -f noninteractive tzdata
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get install -y mysql-client
 
-# install mysql-client and config a root with password 123456
-
-RUN apt-get install -y mysql-client && \
-    systemctl enable mysql && \
+# config a root with password 123456
+RUN systemctl enable mysql && \
     service mysql start && \
     mysql -e "CREATE USER 'root'@'%' IDENTIFIED BY '123456';" && \
     mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';" && \
