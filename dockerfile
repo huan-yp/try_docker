@@ -22,7 +22,10 @@ RUN service mysql restart && \
 RUN apt-get install -y wget && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
-    rm Miniconda3-latest-Linux-x86_64.sh
+    rm Miniconda3-latest-Linux-x86_64.sh && \
+    source ~/.bashrc && \
+    conda init && \
+    conda activate base
 
 ENV PATH="/opt/conda/bin:${PATH}"
 
@@ -38,8 +41,6 @@ RUN apt-get install -y openjdk-17-jdk git pip curl openssh-server wget
 
 # pull backend and install python requirement
 RUN git clone https://github.com/huan-yp/luling-backend.git /home/luling-backend && \
-    conda init && \
-    conda activate base && \
     pip install -r /home/luling-backend/requirement.txt
 
 # install mirai-console
