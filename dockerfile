@@ -38,6 +38,7 @@ RUN apt-get install -y openjdk-17-jdk git pip curl openssh-server wget
 
 # pull backend and install python requirement
 RUN git clone https://github.com/huan-yp/luling-backend.git /home/luling-backend && \
+    conda init && \
     conda activate base && \
     pip install -r /home/luling-backend/requirement.txt
 
