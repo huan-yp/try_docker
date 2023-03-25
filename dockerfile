@@ -23,11 +23,10 @@ RUN apt-get install -y wget && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
     rm Miniconda3-latest-Linux-x86_64.sh && \
+    echo 'export PATH="/root/miniconda3/bin:$PATH"' >> ~/.bashrc && \
     source ~/.bashrc && \
     conda init && \
     conda activate base
-
-ENV PATH="/opt/conda/bin:${PATH}"
 
 # install python3.8
 RUN apt-get install -y software-properties-common && \
