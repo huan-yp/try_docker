@@ -36,7 +36,7 @@ RUN mkdir /home/luling-backend && \
 RUN mkdir /home/luling-frontend && \
     cd /home/luling-frontend && \
     wget https://github.com/iTXTech/mcl-installer/releases/download/v1.0.7/mcl-installer-1.0.7-linux-amd64 -O installer && \
-    chmod 777 installer && echo "NN" | ./installer && \
+    chmod 777 installer && echo -e "N\nN\n" | ./installer && \
     mkdir ./plugins && \
     wget http://47.109.84.142:8001/fix-protocol-version-1.3.0.mirai2.jar -O "./plugins/fix-protocol.jar" && \
     wget http://47.109.84.142:8001/LuLing%20AI-0.2.0.mirai2.jar -O "./plugins/LuLingAI-0.2.0.mirai2.jar"&& \
