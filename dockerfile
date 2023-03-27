@@ -33,7 +33,7 @@ RUN mkdir /home/luling-backend && \
     pip install -r /home/luling-backend/requirement.txt
 
 # install mirai-console and lulingAI plugin
-RUN mkdir /luling/luling-frontend && \
+RUN mkdir /home/luling-frontend && \
     cd /home/luling-frontend && \
     wget https://github.com/iTXTech/mcl-installer/releases/download/v1.0.7/mcl-installer-1.0.7-linux-amd64 -O installer.sh && \
     echo "NY" | sh installer.sh && \
