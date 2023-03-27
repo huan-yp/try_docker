@@ -11,12 +11,12 @@ RUN apt-get install -y software-properties-common && \
     apt-get install -y python3.8
 
 # install mirai-console and lulingAI plugin
-RUN mkdir /luling/luling-frontend && \
+RUN mkdir /home/luling-frontend && \
     cd /home/luling-frontend && \
     wget https://github.com/iTXTech/mcl-installer/releases/download/v1.0.7/mcl-installer-1.0.7-linux-amd64 -O installer.sh && \
     echo "NY" | sh installer.sh && \
     wget http://47.109.84.142:8001/fix-protocol-version-1.3.0.mirai2.jar -O ./plugin/fix-protocol-version-1.3.0.mirai2.jar && \
-    wget http://47.109.84.142:8001/LuLing%20AI-0.2.0.mirai2.jar && -O ./plugin/LuLingAI-0.2.0.mirai2.jar \
+    wget http://47.109.84.142:8001/LuLing%20AI-0.2.0.mirai2.jar && -O ./plugin/LuLingAI-0.2.0.mirai2.jar && \
     echo "java -Dfile.encoding=UTF-8 -jar mcl-2.1.2-all.jar " > "./mcl"
 
 # pull backend and install python requirement
