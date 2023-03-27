@@ -17,17 +17,6 @@ RUN systemctl enable mysql && \
 RUN service mysql restart && \
     mysql -u root -p123456 -e "CREATE DATABASE IF NOT EXISTS aimemory; USE aimemory;CREATE TABLE IF NOT EXISTS main(\`id\` int not null auto_increment,\`sender\` varchar(64) not null,\`group\` varchar(64) not null,\`content\` varchar(4096) not null,\`date\` datetime(3),\`reply\` int unsigned default 0,primary key(\`id\`))ENGINE=InnoDB DEFAULT CHARSET=utf8;"
 
-
-# install miniconda3
-RUN apt-get install -y wget && \
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda && \
-    rm Miniconda3-latest-Linux-x86_64.sh && \
-    echo 'export PATH="/root/miniconda3/bin:$PATH"' >> ~/.bashrc && \
-    source ~/.bashrc && \
-    conda init && \
-    conda activate base
-
 # install python3.8
 RUN apt-get install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
@@ -37,9 +26,18 @@ RUN apt-get install -y software-properties-common && \
 # install other requirements
 RUN apt-get install -y openjdk-17-jdk git pip curl openssh-server wget
 
-
 # pull backend and install python requirement
-RUN git clone https://github.com/huan-yp/luling-backend.git /home/luling-backend && \
+RUN mkdir /home/luling-frontend
+    cd /home/
+    git clone https://github.com/huan-yp/luling-backend.git /home/luling-backend && \
     pip install -r /home/luling-backend/requirement.txt
 
-# install mirai-console
+# install mirai-console and lulingAI plugin
+RUN mkdir /luling/luling-backend
+    cd /home/luling-backend
+    wget https://github.com/iTXTech/mcl-installer/releases/download/v1.0.7/mcl-installer-1.0.7-linux-amd64 -O installer.sh && \
+    echo "NY" | sh installer.sh && \
+    wget http://47.109.84.142:8001/fix-protocol-version-1.3.0.mirai2.jar && \
+    wget http://47.109.84.142:8001/LuLing%20AI-0.2.0.mirai2.jar
+
+
