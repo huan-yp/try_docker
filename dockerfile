@@ -27,14 +27,14 @@ RUN apt-get install -y software-properties-common && \
 RUN apt-get install -y openjdk-17-jdk git pip curl openssh-server wget
 
 # pull backend and install python requirement
-RUN mkdir /home/luling-frontend
-    cd /home/
+RUN mkdir /home/luling-frontend && \
+    cd /home/ && \
     git clone https://github.com/huan-yp/luling-backend.git /home/luling-backend && \
     pip install -r /home/luling-backend/requirement.txt
 
 # install mirai-console and lulingAI plugin
-RUN mkdir /luling/luling-backend
-    cd /home/luling-backend
+RUN mkdir /luling/luling-backend && \
+    cd /home/luling-backend && \
     wget https://github.com/iTXTech/mcl-installer/releases/download/v1.0.7/mcl-installer-1.0.7-linux-amd64 -O installer.sh && \
     echo "NY" | sh installer.sh && \
     wget http://47.109.84.142:8001/fix-protocol-version-1.3.0.mirai2.jar && \
