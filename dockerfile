@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+ENV LANG C.UTF-8
+
 # install mysql-server, mysql-client
 RUN apt-get update && \
     apt-get install -y tzdata systemctl && \
@@ -24,11 +26,10 @@ RUN apt-get install -y software-properties-common && \
     apt-get install -y python3.8
 
 # install ubuntu requirements
-RUN apt-get install -y openjdk-17-jdk git pip curl openssh-server wget
+RUN apt-get install -y openjdk-17-jdk git pip curl openssh-server wget vim
 
 # pull backend and install python requirements
 RUN mkdir /home/luling-backend && \
     cd /home/luling-backend && \
     git clone https://github.com/huan-yp/luling-backend.git /home/luling-backend && \
     pip install -r /home/luling-backend/requirement.txt
-
